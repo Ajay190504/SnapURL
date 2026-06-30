@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://your-backend-render-url.onrender.com/api/:path*"
+      "destination": "https://snapurl-xqf0.onrender.com/api/:path*"
     },
     {
       "source": "/:code([a-zA-Z0-9]{1,10})",
-      "destination": "https://your-backend-render-url.onrender.com/:code"
+      "destination": "https://snapurl-xqf0.onrender.com/:code"
     },
     {
       "source": "/((?!api/|assets/|static/).*)",
