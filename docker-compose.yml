@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: snapurl-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: snapurl
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - snapurl-network
+
+  redis:
+    image: redis:7.0-alpine
+    container_name: snapurl-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - snapurl-network
+
+volumes:
+  mysql-data:
+  redis-data:
+
+networks:
+  snapurl-network:
+    driver: bridge

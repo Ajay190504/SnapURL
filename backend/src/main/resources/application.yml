@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: snapurl-backend
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql-e157e1e-ajayytube9260-6469.g.aivencloud.com:12964/defaultdb?useSSL=true&requireSSL=true&verifyServerCertificate=false}
+    username: ${SPRING_DATASOURCE_USERNAME:avnadmin}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000
+
+  task:
+    execution:
+      pool:
+        core-size: 10
+        max-size: 50
+        queue-capacity: 500
+        keep-alive: 60s
+      thread-name-prefix: click-async-
+
+# Spring Boot Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Custom configurations
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  hash-salt: ${HASH_SALT:snapurl_salt_12345}
+  base-url: ${BASE_URL:http://localhost:8080}
+  admin-emails: ${ADMIN_EMAILS:admin@snapurl.com,developer@gmail.com}
